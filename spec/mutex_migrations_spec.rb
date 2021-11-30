@@ -5,7 +5,15 @@ RSpec.describe MutexMigrations do
 
   describe "configuration" do
     it "enabled by default" do
-      expect(MutexMigrations.new.enabled).to be_truthy
+      expect(MutexMigrations::Configuration.new.enabled).to be_truthy
+    end
+
+    it "changes settings" do
+      MutexMigrations.configure do |config|
+        config.enabled = false
+      end
+
+      expect(MutexMigrations.configuration.enabled).to be_falsy
     end
   end
 end
