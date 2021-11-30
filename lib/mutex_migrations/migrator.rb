@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "rails"
 
 module MutexMigrations
   module Migrator # :nodoc:

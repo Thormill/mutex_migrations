@@ -1,6 +1,9 @@
 require "mutex_migrations/version"
 require "mutex_migrations/configuration"
+# require "rails"
+require "active_record"
 require "mutex_migrations/symaphore"
+require "mutex_migrations/migrator"
 
 module MutexMigrations
   class Error < StandardError; end
@@ -22,4 +25,4 @@ module MutexMigrations
   end
 end
 
-# ActiveRecord::Migrator.prepend(MutexMigrations::Migrator)
+ActiveRecord::Migrator.prepend(MutexMigrations::Migrator)
