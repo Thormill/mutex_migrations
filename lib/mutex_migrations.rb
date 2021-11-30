@@ -1,5 +1,6 @@
 require "mutex_migrations/version"
 require "mutex_migrations/configuration"
+require "mutex_migrations/symaphore"
 
 module MutexMigrations
   class Error < StandardError; end
@@ -20,3 +21,5 @@ module MutexMigrations
     yield(configuration)
   end
 end
+
+ActiveRecord::Migrator.prepend(MutexMigrations::Migrator)
