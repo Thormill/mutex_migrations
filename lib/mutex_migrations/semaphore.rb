@@ -17,9 +17,7 @@ module MutexMigrations
     end
 
     def lock
-      @mutex.lock
-    rescue ThreadError
-      false
+      @mutex.try_lock
     end
 
     def locked?

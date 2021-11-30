@@ -29,9 +29,7 @@ module MutexMigrations
     end
 
     def with_mutex_lock
-      raise ConcurrentMigrationError if Semaphore.instance.locked?
-
-      Semaphore.instance.lock
+      raise ConcurrentMigrationError unless Semaphore.instance.lock
 
       with_advisory_lock_connection do |connection|
         load_migrated
