@@ -3,7 +3,9 @@ RSpec.describe MutexMigrations do
     expect(MutexMigrations::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe "configuration" do
+    it "enabled by default" do
+      expect(MutexMigrations.new.enabled).to be_truthy
+    end
   end
 end
