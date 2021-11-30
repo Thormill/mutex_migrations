@@ -6,12 +6,27 @@ module MutexMigrations
       @mutex = Mutex.new
     end
 
-    def self.call
-      return unless block_given?
+    class << self
+      def call
+        return unless block_given?
 
-      @mutex.synchronize do
-        yield
+        @mutex.synchronize do
+          yield
+        end
+      end
+
+      def lock
+        @mutex.lock
+      end
+
+      def locked?
+        @mutex.locked?
+      end
+
+      def unlock
+        @mutex.unlock
       end
     end
+
   end
 end
