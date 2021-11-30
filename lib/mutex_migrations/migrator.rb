@@ -3,7 +3,6 @@ require "rails"
 
 module MutexMigrations
   module Migrator # :nodoc:
-    # private
 
     def run
       if use_advisory_lock?

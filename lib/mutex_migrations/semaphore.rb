@@ -17,19 +17,16 @@ module MutexMigrations
     end
 
     def lock
-      puts "MUTEX LOCK"
       @mutex.lock
     rescue ThreadError
       false
     end
 
     def locked?
-      puts "MUTEX LOCKED?"
       @mutex.locked?
     end
 
     def unlock
-      puts "MUTEX UNLOCK"
       @mutex.unlock
     end
 
