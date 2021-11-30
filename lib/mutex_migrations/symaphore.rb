@@ -1,3 +1,5 @@
+require 'singleton'
+
 module MutexMigrations
   class Symaphore
     include Singleton

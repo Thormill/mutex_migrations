@@ -22,4 +22,4 @@ module MutexMigrations
   end
 end
 
-ActiveRecord::Migrator.prepend(MutexMigrations::Migrator)
+# ActiveRecord::Migrator.prepend(MutexMigrations::Migrator)
