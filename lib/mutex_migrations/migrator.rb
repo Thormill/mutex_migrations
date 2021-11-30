@@ -3,7 +3,7 @@ require "rails"
 
 module MutexMigrations
   module Migrator # :nodoc:
-    private
+    # private
 
     def run
       if use_advisory_lock?
@@ -30,14 +30,16 @@ module MutexMigrations
     end
 
     def with_mutex_lock
-      raise ConcurrentMigrationError unless Semaphore.lock
+      raise ConcurrentMigrationError if Semaphore.instance.locked?
+
+      Semaphore.instance.lock
 
       with_advisory_lock_connection do |connection|
         load_migrated
 
         yield
       ensure
-        unless Semaphore.unlock
+        unless Semaphore.instance.unlock
           raise ConcurrentMigrationError.new(
             ConcurrentMigrationError::RELEASE_LOCK_FAILED_MESSAGE
           )

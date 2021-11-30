@@ -2,7 +2,7 @@ require "mutex_migrations/version"
 require "mutex_migrations/configuration"
 # require "rails"
 require "active_record"
-require "mutex_migrations/symaphore"
+require "mutex_migrations/semaphore"
 require "mutex_migrations/migrator"
 
 module MutexMigrations
