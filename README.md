@@ -3,7 +3,7 @@
 Hello!
 This gem was created when i faced ConcurrentMigrationError while using PgBouncer in transaction mode with rails 6.
 Bouncer in this mode is incompatbile with advisory locks, so to keep the functionality and fix the issue i've written this gem.
-It is using file locks instead of advisory locks.
+It is using mutex instead of advisory locks.
 
 
 ## Installation
