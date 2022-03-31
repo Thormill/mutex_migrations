@@ -31,16 +31,14 @@ module MutexMigrations
     def with_mutex_lock
       raise ConcurrentMigrationError unless Semaphore.instance.lock
 
-      with_advisory_lock_connection do |connection|
-        load_migrated
+      load_migrated
 
-        yield
-      ensure
-        unless Semaphore.instance.unlock
-          raise ConcurrentMigrationError.new(
-            ConcurrentMigrationError::RELEASE_LOCK_FAILED_MESSAGE
-          )
-        end
+      yield
+    ensure
+      unless Semaphore.instance.unlock
+        raise ConcurrentMigrationError.new(
+          ConcurrentMigrationError::RELEASE_LOCK_FAILED_MESSAGE
+        )
       end
     end
   end
